@@ -32,7 +32,9 @@ client_options: (optional)
 - authorize_url: defaults to '/oauth/authorize'
 - token_url: defaults to '/oauth/token'
 
-example: config.omniauth :clover, "APP_ID", "APP_SECRET", :client_options => {:site => 'https://dev.server.com'}
+example:
+
+    config.omniauth :clover, "APP_ID", "APP_SECRET", :client_options => {:site => 'https://dev.server.com'}
 
 2) make your user model omniauthable
 
