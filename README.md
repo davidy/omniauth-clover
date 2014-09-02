@@ -21,16 +21,54 @@ Or install it yourself as:
 
 ## Usage
 
-config.omniauth :clover, "APP_ID", "APP_SECRET", :client_options => {:site => SITE}
+Integrates with Devise authentication:
+
+1) add config/initializers/devise.rb
+
+config.omniauth :clover, "APP_ID", "APP_SECRET"
+
+    client_options: (optional)
+    - site: defaults to the production https://www.clover.com
+    - authorize_url: defaults to '/oauth/authorize'
+    - token_url: defaults to '/oauth/token'
+
+2) make your user model omniauthable
+
+    devise :omniauthable, :omniauth_providers => [:clover]
+    
+3) once your user model is omniauthable and if your devise_for :user was added to config/routes.rb, you will have the following routes available:
+
+    user_omniauth_authorize_path(provider)
+    user_omniauth_callback_path(provider)
+    
+4) create sign in link
+
+    <%= link_to "Sign in with Clover", user_omniauth_authorize_path(:clover) %> 
+    
+5) callback
+
+    class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+        def clover
+            # @omniauth will have the following json available:
+            # 
+            # {
+            #   "provider"=>"clover", 
+            #   "uid" => "", 
+            #   "info" => {
+            #       "name" => "", "first_name"=> "", "last_name"=>"", "email"=>"", "role"=>"", 
+            #       "urls" => {
+            #       "Clover"=>"https://..."}
+            #   }, 
+            #   "credentials" => {"token"=>"", "expires"=>false}, 
+            #   "extra" => {"merchant_id"=>"", "employee_id"=>"", "client_id"=>"", "code"=>""}
+            # }
+            @omniauth = request.env['omniauth.auth'].to_hash
+
+            ...
+        end
+    end
 
 Please visit: https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview for more information.
-
-client options:
----------------
-- site: Defaults to the production https://www.clover.com. Change SITE to point to the development server for testing.
-- authorize_url: Defaults to '/oauth/authorize'
-- token_url: Defaults to '/oauth/token' 
-
 
 ## Contributing
 
