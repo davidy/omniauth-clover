@@ -23,14 +23,16 @@ Or install it yourself as:
 
 Integrates with Devise authentication:
 
-1) add config/initializers/devise.rb
+1) add to your config/initializers/devise.rb
 
-config.omniauth :clover, "APP_ID", "APP_SECRET"
+    config.omniauth :clover, "APP_ID", "APP_SECRET"
 
-    client_options: (optional)
-    - site: defaults to the production https://www.clover.com
-    - authorize_url: defaults to '/oauth/authorize'
-    - token_url: defaults to '/oauth/token'
+client_options: (optional)
+- site: defaults to the production https://www.clover.com
+- authorize_url: defaults to '/oauth/authorize'
+- token_url: defaults to '/oauth/token'
+
+example: config.omniauth :clover, "APP_ID", "APP_SECRET", :client_options => {:site => 'https://dev.server.com'}
 
 2) make your user model omniauthable
 
