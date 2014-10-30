@@ -81,3 +81,5 @@ Please visit: https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview fo
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+[![omniauth-clover API Documentation](https://www.omniref.com/ruby/gems/omniauth-clover.png)](https://www.omniref.com/ruby/gems/omniauth-clover)
