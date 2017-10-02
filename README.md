@@ -51,6 +51,7 @@ example:
     
 5) callback
 
+  ```ruby
     class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         def clover
             # @omniauth will have the following json available:
@@ -71,6 +72,7 @@ example:
             ...
         end
     end
+  ```
 
 Please visit: https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview for more information.
 
