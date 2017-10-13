@@ -38,19 +38,23 @@ example:
 
 2) make your user model omniauthable
 
-    devise :omniauthable, :omniauth_providers => [:clover]
+    `devise :omniauthable, :omniauth_providers => [:clover]`
     
 3) once your user model is omniauthable and if your devise_for :user was added to config/routes.rb, you will have the following routes available:
 
+  ```ruby
     user_omniauth_authorize_path(provider)
     user_omniauth_callback_path(provider)
+  ```
     
 4) create sign in link
 
+  ```erb
     <%= link_to "Sign in with Clover", user_omniauth_authorize_path(:clover) %> 
-    
+  ```
 5) callback
 
+  ```ruby
     class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         def clover
             # @omniauth will have the following json available:
@@ -71,6 +75,7 @@ example:
             ...
         end
     end
+  ```
 
 Please visit: https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview for more information.
 
